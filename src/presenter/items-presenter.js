@@ -2,13 +2,15 @@ import ItemView from '../view/item-view.js';
 import {render} from '../render.js';
 
 export default class ItemsPresenter {
-  constructor({listContainer}) {
+  constructor({listContainer, tasksModel}) {
     this.listContainer = listContainer;
+    this.tasksModel = tasksModel;
   }
 
   init() {
-    for (let i = 0; i < 3; i++) {
-      render(new ItemView(), this.listContainer.getElement());
+    this.tasks = [...this.tasksModel.getTasks()];
+    for (let i = 0; i < this.tasks.length; i++) {
+      render(new ItemView({task: this.tasks[i]}), this.listContainer.getElement());
     }
   }
 }

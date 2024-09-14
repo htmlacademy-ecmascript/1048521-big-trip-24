@@ -1,4 +1,4 @@
-const MOCK_DESTINATION =
+const MOCK_DESTINATIONS =
 [
   {
     "id": "d9241ccc-05b5-4b5e-8eff-914c4c097db2",
@@ -174,4 +174,4 @@ const MOCK_DESTINATION =
   }
 ];
 
-export {MOCK_DESTINATION};
+export {MOCK_DESTINATIONS};
