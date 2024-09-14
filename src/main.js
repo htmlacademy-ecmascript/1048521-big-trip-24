@@ -6,6 +6,9 @@ import SortingView from './view/sorting-view.js';
 import ListView from './view/list-view.js';
 import ItemsPresenter from './presenter/items-presenter.js';
 import newEventView from './view/new-event-view';
+import {MOCK_POINTS} from '../mock/task-points';
+import {MOCK_OFFERS} from '../mock/task-offers';
+import {MOCK_DESTINATIONS} from '../mock/task-destinations.js';
 
 const siteControlsFilters = document.querySelector('.trip-controls__filters');
 const siteEvents = document.querySelector('.trip-events');
