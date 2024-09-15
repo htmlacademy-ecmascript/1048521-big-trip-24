@@ -5,7 +5,7 @@ import RoutePointView from './view/route-point-view.js';
 import SortingView from './view/sorting-view.js';
 import ListView from './view/list-view.js';
 import ItemsPresenter from './presenter/items-presenter.js';
-import newEventView from './view/new-event-view';
+import NewEventView from './view/new-event-view';
 import TasksModel from './model/tasks-model.js';
 
 const siteControlsFilters = document.querySelector('.trip-controls__filters');
@@ -25,7 +25,7 @@ itemsPresenter.init();
 const filterView = new FilterView();
 render(filterView, siteControlsFilters);
 
-const newEventButtonView = new newEventView();
+const newEventButtonView = new NewEventView();
 
 const tripFilters = document.querySelector('.trip-filters');
 render(newEventButtonView, tripFilters);

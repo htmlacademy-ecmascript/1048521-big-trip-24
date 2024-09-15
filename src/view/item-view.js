@@ -1,5 +1,5 @@
 import {createElement} from '../render.js';
-import {humanizeTaskDueDate, showTripDuration, calculateTripDuration} from '../utils.js';
+import {humanizeTaskDueDate, showTripDuration, calculateTripDuration, showFullDate, showFullDateTime} from '../utils.js';
 
 function creationAdditionalServices(offers) {
   return offers.map((element) =>
@@ -17,16 +17,18 @@ function createItem(task) {
   return (
     `<li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="2019-03-18">${humanizeTaskDueDate(startDate)}</time>
+        ${humanizeTaskDueDate(startDate) ?
+      `<time class="event__date" datetime="${showFullDate(startDate)}">${humanizeTaskDueDate(startDate)}</time>`
+      : ''}
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
         </div>
         <h3 class="event__title">${type} ${destinationDetails.name}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="2019-03-18T10:30">${showTripDuration(startDate)}</time>
+            <time class="event__start-time" datetime="${showFullDateTime(startDate)}">${showTripDuration(startDate)}</time>
             &mdash;
-            <time class="event__end-time" datetime="2019-03-18T11:00">${showTripDuration(endDate)}</time>
+            <time class="event__end-time" datetime="${showFullDateTime(endDate)}">${showTripDuration(endDate)}</time>
           </p>
           <p class="event__duration">${calculateTripDuration(startDate, endDate)}</p>
         </div>
