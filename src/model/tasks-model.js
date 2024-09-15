@@ -13,10 +13,15 @@ function mergeDataArrays(points, offers, destinations) {
     const destination = destinations.find((dest) => dest.id === point.destination);
     const destinationDetails = destination ? { name: destination.name, description: destination.description, pictures: destination.pictures } : null;
 
+    const { date_from: startDate, date_to: endDate, base_price: basePrice, ...rest } = point;
+
     return {
-      ...point,
+      ...rest,
       offers: filteredOffersDetails,
       destinationDetails,
+      startDate,
+      endDate,
+      basePrice
     };
   });
 }
@@ -24,11 +29,10 @@ function mergeDataArrays(points, offers, destinations) {
 const mergedData = mergeDataArrays(MOCK_POINTS, MOCK_OFFERS, MOCK_DESTINATIONS);
 console.log(mergedData);
 
-function merge() {
-}
-
 export default class TasksModel {
-  tasks = Array.from({length: 30}, merge);
+  constructor() {
+    this.tasks = mergedData;
+  }
 
   getTasks() {
     return this.tasks;
