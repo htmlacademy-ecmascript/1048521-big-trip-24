@@ -1,6 +1,6 @@
 import {MOCK_POINTS} from '../mock/task-points.js';
 import {MOCK_OFFERS} from '../mock/task-offers.js';
-import {MOCK_DESTINATIONS} from '../mock/task-destinations';
+import {MOCK_DESTINATIONS} from '../mock/task-destinations.js';
 
 function mergeDataArrays(points, offers, destinations) {
   return points.map((point) => {
@@ -27,8 +27,6 @@ function mergeDataArrays(points, offers, destinations) {
 }
 
 const mergedData = mergeDataArrays(MOCK_POINTS, MOCK_OFFERS, MOCK_DESTINATIONS);
-console.log(mergedData);
-
 export default class TasksModel {
   constructor() {
     this.tasks = mergedData;
