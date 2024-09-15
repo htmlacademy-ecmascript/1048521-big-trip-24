@@ -1,6 +1,6 @@
 import {createElement} from '../render.js';
 
-function createItem() {
+function createItem(task) {
   return (
     `<li class="trip-events__item">
       <div class="event">
@@ -43,8 +43,12 @@ function createItem() {
 }
 
 export default class ItemView {
+  constructor({task}) {
+    this.task = task;
+  }
+
   getTemplate() {
-    return createItem();
+    return createItem(this.task);
   }
 
   getElement() {
