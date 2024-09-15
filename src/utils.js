@@ -1,14 +1,17 @@
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
 const DATE_FORMAT = 'MMM D';
 const TIME_FORMAT = 'HH:mm';
 
+dayjs.extend(utc);
 
 function humanizeTaskDueDate(dueDate) {
   return dueDate ? dayjs(dueDate).format(DATE_FORMAT) : '';
 }
 
 function showTripDuration(dueDate) {
-  return dueDate ? dayjs(dueDate).format(TIME_FORMAT) : '';
+  return dueDate ? dayjs.utc(dueDate).format(TIME_FORMAT) : '';
 }
 
 function calculateTripDuration(start, end) {
