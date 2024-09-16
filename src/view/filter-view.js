@@ -22,9 +22,6 @@ function createFilter() {
         <input id="filter-past" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="past" disabled>
         <label class="trip-filters__filter-label" for="filter-past">Past</label>
       </div>
-
-      <button class="visually-hidden" type="submit">Accept filter</button>
-      <button class="trip-main__event-add-btn  btn  btn--big  btn--yellow" type="button">New event</button>
     </form>`
   );
 }

@@ -1,32 +1,43 @@
 import {createElement} from '../render.js';
+import {humanizeTaskDueDate, showTripDuration, calculateTripDuration, showFullDate, showFullDateTime} from '../utils.js';
 
-function createItem() {
+function creationAdditionalServices(offers) {
+  return offers.map((element) =>
+    `<li class="event__offer">
+      <span class="event__offer-title">${element.title}</span>
+      &plus;&euro;&nbsp;
+      <span class="event__offer-price">${element.price}</span>
+    </li>`
+  ).join('');
+}
+
+
+function createItem(task) {
+  const {type, destinationDetails, startDate, endDate, basePrice, offers} = task;
   return (
     `<li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="2019-03-18">MAR 18</time>
+        ${humanizeTaskDueDate(startDate) ?
+      `<time class="event__date" datetime="${showFullDate(startDate)}">${humanizeTaskDueDate(startDate)}</time>`
+      : ''}
         <div class="event__type">
-          <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
+          <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
         </div>
-        <h3 class="event__title">Taxi Amsterdam</h3>
+        <h3 class="event__title">${type} ${destinationDetails.name}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
+            <time class="event__start-time" datetime="${showFullDateTime(startDate)}">${showTripDuration(startDate)}</time>
             &mdash;
-            <time class="event__end-time" datetime="2019-03-18T11:00">11:00</time>
+            <time class="event__end-time" datetime="${showFullDateTime(endDate)}">${showTripDuration(endDate)}</time>
           </p>
-          <p class="event__duration">30M</p>
+          <p class="event__duration">${calculateTripDuration(startDate, endDate)}</p>
         </div>
         <p class="event__price">
-          &euro;&nbsp;<span class="event__price-value">20</span>
+          &euro;&nbsp;<span class="event__price-value">${basePrice}</span>
         </p>
         <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
-          <li class="event__offer">
-            <span class="event__offer-title">Order Uber</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">20</span>
-          </li>
+          ${creationAdditionalServices(offers)}
         </ul>
         <button class="event__favorite-btn event__favorite-btn--active" type="button">
           <span class="visually-hidden">Add to favorite</span>
@@ -43,8 +54,12 @@ function createItem() {
 }
 
 export default class ItemView {
+  constructor({task}) {
+    this.task = task;
+  }
+
   getTemplate() {
-    return createItem();
+    return createItem(this.task);
   }
 
   getElement() {
